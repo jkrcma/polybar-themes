@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 BAR_ICON=""
-NOTIFY_ICON=/usr/share/icons/Papirus/32x32/apps/system-software-update.svg
+NOTIFY_ICON=system-software-update
 
 get_total_updates() { UPDATES=$(checkupdates 2>/dev/null | wc -l); }
 
@@ -26,13 +26,14 @@ while true; do
     # every 10 seconds another check for updates is done
     while (( UPDATES > 0 )); do
         if (( UPDATES == 1 )); then
-            echo " $UPDATES Update"
+            echo " $UPDATES update"
         elif (( UPDATES > 1 )); then
-            echo " $UPDATES Updates"
+            echo " $UPDATES updates"
         else
             echo $BAR_ICON
         fi
-        sleep 10
+        # edited: this is Arch Linux, there are updates all the time
+        sleep 1800
         get_total_updates
     done
 
